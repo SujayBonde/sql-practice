@@ -625,37 +625,6 @@ This database structure is also useful for understanding the SQL side of a futur
 
 ---
 
-# 💼 Backend Development Connection
-
-SQL is an important part of Java backend development.
-
-This repository focuses on concepts used later with:
-
-```text
-Java
-   ↓
-Spring Boot
-   ↓
-JPA / Hibernate
-   ↓
-SQL
-   ↓
-MySQL
-```
-
-The SQL knowledge developed here will be useful when working with:
-
-* Spring Data JPA
-* Hibernate
-* Entity Relationships
-* JPQL
-* Native Queries
-* REST APIs
-* Transaction Management
-* Database-driven applications
-
----
-
 # 🧠 Interview Preparation
 
 Important concepts to revise:
@@ -717,7 +686,7 @@ Install **MySQL 8+** on your system.
 ## 2. Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/sql-practice.git
+git clone https://github.com/SujayBonde/sql-practice.git
 ```
 
 ## 3. Open MySQL
@@ -790,27 +759,6 @@ Apply to Real-World Database
 ```
 
 The focus is on **understanding why a query works**, not just memorizing syntax.
-
----
-
-# 🔗 Related Projects
-
-This SQL practice repository supports my Java Full Stack development journey.
-
-### Java
-
-* `java-core-practice`
-* `java-dsa`
-
-### Backend
-
-* `spring-boot-rest-api`
-* `spring-security-jwt`
-
-### Full Stack
-
-* `blog-application`
-* `e-commerce-application`
 
 ---
 
