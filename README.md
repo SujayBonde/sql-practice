@@ -773,7 +773,7 @@ Java • Spring Boot • React • MySQL
   <a href="https://sujaybonde.vercel.app">
     <img src="https://img.shields.io/badge/Portfolio-Visit%20Portfolio-blue?style=for-the-badge" alt="Portfolio">
   </a>
-  <a href="linkedin.com/in/sujay-bonde">
+  <a href="https://www.linkedin.com/in/sujay-bonde">
     <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
   </a>
 </p>
