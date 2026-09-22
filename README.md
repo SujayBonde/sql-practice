@@ -1,282 +1,843 @@
-# SQL Practice Repository
+````markdown
+# 🗄️ SQL Practice
 
-[![SQL Standard](https://img.shields.io/badge/SQL-ANSI%20Standard-blue.svg?style=flat-square)](#)
-[![Engines](https://img.shields.io/badge/RDBMS-PostgreSQL%20%7C%20MySQL%20%7C%20SQLite%20%7C%20SQL%20Server-2ea44f.svg?style=flat-square)](#dialect-compatibility-matrix)
-[![Modules](https://img.shields.io/badge/Modules-15%20Directories-8a2be2.svg?style=flat-square)](#curriculum-overview)
-[![Scripts](https://img.shields.io/badge/Scripts-80%2B%20SQL%20Files-orange.svg?style=flat-square)](#curriculum-overview)
-[![License](https://img.shields.io/badge/License-MIT-gray.svg?style=flat-square)](LICENSE)
+<p align="center">
+  <strong>A structured SQL learning repository covering fundamentals, database design, advanced queries, and interview preparation.</strong>
+</p>
 
-A structured, standalone SQL curriculum spanning foundational relational concepts to advanced analytical patterns and production database schemas. Every script contains self-contained schema definitions, test data fixtures, and declarative query demonstrations.
-
----
-
-## Table of Contents
-
-- [Curriculum Overview](#curriculum-overview)
-- [Dialect Compatibility Matrix](#dialect-compatibility-matrix)
-- [Repository Structure](#repository-structure)
-- [Module Index & Topics](#module-index--topics)
-- [Production Schemas](#production-schemas)
-- [Interview Challenge Mappings](#interview-challenge-mappings)
-- [Quickstart Execution](#quickstart-execution)
-- [Git Remote Configuration](#git-remote-configuration)
+<p align="center">
+  <img src="https://img.shields.io/badge/SQL-MySQL-blue?style=for-the-badge&logo=mysql&logoColor=white" alt="SQL">
+  <img src="https://img.shields.io/badge/Level-Beginner%20to%20Advanced-success?style=for-the-badge" alt="Level">
+  <img src="https://img.shields.io/badge/Practice-200%2B%20Queries-orange?style=for-the-badge" alt="Queries">
+  <img src="https://img.shields.io/badge/Focus-Backend%20Development-purple?style=for-the-badge" alt="Backend">
+</p>
 
 ---
 
-## Curriculum Overview
+## 📌 About
 
-The repository is organized into five progressive competency tiers:
+This repository contains my structured SQL practice journey, starting from basic queries and progressing toward advanced SQL, relational database design, optimization concepts, and real-world database scenarios.
 
-```
-[ Tier 1: Fundamentals ] ─────> 01-Basics, 02-Constraints, 03-CRUD
-                                      │
-[ Tier 2: Transformation ] ───> 04-Functions, 05-Grouping, 06-Joins
-                                      │
-[ Tier 3: Set Algebra ] ──────> 07-Subqueries, 08-Set-Operations, 09-Views
-                                      │
-[ Tier 4: Engine Internals ] ─> 10-Indexes, 11-Transactions, 12-Database-Design
-                                      │
-[ Tier 5: High-Performance ] ─> 13-Advanced-SQL, 14-Interview-Queries, 15-Real-World-Database
-```
+The goal is to build a strong SQL foundation for **Java Backend and Full Stack Development**.
 
----
+### 🎯 Main Objectives
 
-## Dialect Compatibility Matrix
-
-The scripts in this repository follow **ANSI SQL:2016** standards. Variations in vendor implementation are annotated directly within the script headers.
-
-| Feature Area | ANSI Standard | PostgreSQL | MySQL 8.0+ | SQLite 3.35+ |
-|---|---|---|---|---|
-| **Limit / Offset** | `FETCH FIRST n ROWS ONLY` | `LIMIT n OFFSET m` | `LIMIT n OFFSET m` | `LIMIT n OFFSET m` |
-| **Window Functions** | `OVER (PARTITION BY ...)` | Native | Native | Native |
-| **Common Table Expressions** | `WITH ...` | Native | Native | Native |
-| **Recursive Queries** | `WITH RECURSIVE ...` | Native | Native | Native |
-| **Set Operations** | `UNION`, `INTERSECT`, `EXCEPT` | `EXCEPT` | `EXCEPT` (8.0.31+) | `EXCEPT` |
-| **Full Outer Join** | `FULL OUTER JOIN` | Native | Emulate (`UNION`) | Emulate (`UNION`) |
-| **String Concatenation** | `\|\|` | `\|\|` | `CONCAT()` / `\|\|` | `\|\|` |
+- Master SQL fundamentals
+- Understand relational database concepts
+- Practice CRUD operations
+- Master SQL joins and subqueries
+- Learn aggregation and grouping
+- Understand database relationships
+- Practice indexes and transactions
+- Learn advanced SQL features
+- Solve common SQL interview problems
+- Design real-world relational databases
 
 ---
 
-## Repository Structure
+## 🛠️ Database
 
-```
+Primary database used:
+
+- **MySQL 8+**
+
+Some concepts may vary slightly between database engines such as PostgreSQL, SQL Server, and SQLite.
+
+---
+
+# 📚 Curriculum
+
+The repository is divided into progressive modules:
+
+```text
+01-Basics
+      ↓
+02-Constraints
+      ↓
+03-CRUD
+      ↓
+04-Functions
+      ↓
+05-Grouping
+      ↓
+06-Joins
+      ↓
+07-Subqueries
+      ↓
+08-Set-Operations
+      ↓
+09-Views
+      ↓
+10-Indexes
+      ↓
+11-Transactions
+      ↓
+12-Database-Design
+      ↓
+13-Advanced-SQL
+      ↓
+14-Interview-Queries
+      ↓
+15-Real-World-Database
+````
+
+---
+
+# 📂 Repository Structure
+
+```text
 sql-practice/
-├── 01-Basics/                 # DDL, DML, Projections, Filtering, Sorting & Pagination
-├── 02-Constraints/            # Primary Keys, Foreign Keys, Unique, Not Null, Checks
-├── 03-CRUD/                   # Create, Read, Update, Delete Operations
-├── 04-Functions/              # Aggregate, String, Numeric, Date & NULL-Safe Functions
-├── 05-Grouping/               # GROUP BY, HAVING & Multi-Column Aggregations
-├── 06-Joins/                  # Inner, Outer, Self & Cross Joins
-├── 07-Subqueries/             # Scalar, Multi-Row, Correlated, IN & EXISTS Subqueries
-├── 08-Set-Operations/         # UNION, UNION ALL, INTERSECT & EXCEPT
-├── 09-Views/                  # View Creation, Projection & Lifecycle Management
-├── 10-Indexes/                # B-Tree, Unique, Composite & Index Seek Optimization
-├── 11-Transactions/           # ACID, Isolation, COMMIT, ROLLBACK & SAVEPOINT
-├── 12-Database-Design/        # Normalization (1NF-3NF), 1:1, 1:N & M:N Junctions
-├── 13-Advanced-SQL/           # CASE, CTEs, Recursive CTEs & Window Functions
-├── 14-Interview-Queries/      # FAANG & LeetCode Relational Query Challenges
-└── 15-Real-World-Database/    # Enterprise Schemas (ERP, E-Commerce, Blog Engine)
+│
+├── 01-Basics/
+├── 02-Constraints/
+├── 03-CRUD/
+├── 04-Functions/
+├── 05-Grouping/
+├── 06-Joins/
+├── 07-Subqueries/
+├── 08-Set-Operations/
+├── 09-Views/
+├── 10-Indexes/
+├── 11-Transactions/
+├── 12-Database-Design/
+├── 13-Advanced-SQL/
+├── 14-Interview-Queries/
+├── 15-Real-World-Database/
+│
+└── README.md
 ```
 
 ---
 
-## Module Index & Topics
+# 📖 Modules
 
-### 01. Basics ([`01-Basics/`](./01-Basics/))
-- [`create-database.sql`](./01-Basics/create-database.sql): Database initialization and collation.
-- [`create-table.sql`](./01-Basics/create-table.sql): Column definitions and data type declarations.
-- [`insert-data.sql`](./01-Basics/insert-data.sql): Single-row and batch insert syntax.
-- [`select.sql`](./01-Basics/select.sql): Column projection and arithmetic expressions.
-- [`distinct.sql`](./01-Basics/distinct.sql): Cardinality reduction and distinct record extraction.
-- [`aliases.sql`](./01-Basics/aliases.sql): Column aliasing and table qualification.
-- [`where.sql`](./01-Basics/where.sql): Row filtering via boolean predicates.
-- [`operators.sql`](./01-Basics/operators.sql): `BETWEEN`, `IN`, `LIKE`, and arithmetic operators.
-- [`order-by.sql`](./01-Basics/order-by.sql): Ascending, descending, and multi-column ordering.
-- [`limit.sql`](./01-Basics/limit.sql): Result set truncation and offset pagination.
+## 01. SQL Basics
 
-### 02. Constraints ([`02-Constraints/`](./02-Constraints/))
-- [`primary-key.sql`](./02-Constraints/primary-key.sql): Single-column and composite entity identifiers.
-- [`foreign-key.sql`](./02-Constraints/foreign-key.sql): Referential integrity and cascade actions (`ON DELETE CASCADE`).
-- [`unique.sql`](./02-Constraints/unique.sql): Candidate key uniqueness and nullability constraints.
-- [`not-null.sql`](./02-Constraints/not-null.sql): Mandatory field enforcement.
-- [`default.sql`](./02-Constraints/default.sql): Column default value generation.
-- [`check.sql`](./02-Constraints/check.sql): Domain range and allowable value validation.
+**Topics:**
 
-### 03. CRUD Operations ([`03-CRUD/`](./03-CRUD/))
-- [`insert.sql`](./03-CRUD/insert.sql): Single, multi-row, and `INSERT INTO ... SELECT` workflows.
-- [`select.sql`](./03-CRUD/select.sql): Structured projection, computed columns, and filtered reads.
-- [`update.sql`](./03-CRUD/update.sql): Conditional single and multi-column modifications.
-- [`delete.sql`](./03-CRUD/delete.sql): Filtered deletion vs table truncation (`TRUNCATE`).
+* CREATE DATABASE
+* CREATE TABLE
+* INSERT
+* SELECT
+* DISTINCT
+* Aliases
+* WHERE
+* Comparison Operators
+* Logical Operators
+* BETWEEN
+* IN
+* LIKE
+* ORDER BY
+* LIMIT
 
-### 04. Functions ([`04-Functions/`](./04-Functions/))
-- [`aggregate-functions.sql`](./04-Functions/aggregate-functions.sql): `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`.
-- [`string-functions.sql`](./04-Functions/string-functions.sql): `UPPER`, `LOWER`, `TRIM`, `SUBSTRING`, `REPLACE`.
-- [`numeric-functions.sql`](./04-Functions/numeric-functions.sql): `ROUND`, `CEIL`, `FLOOR`, `ABS`, `MOD`.
-- [`date-functions.sql`](./04-Functions/date-functions.sql): Date extraction, current timestamp, and date intervals.
-- [`null-functions.sql`](./04-Functions/null-functions.sql): `COALESCE`, `NULLIF`, division-by-zero guards.
+**Practice Files:**
 
-### 05. Grouping ([`05-Grouping/`](./05-Grouping/))
-- [`group-by.sql`](./05-Grouping/group-by.sql): Dimensional aggregation across single and multiple attributes.
-- [`having.sql`](./05-Grouping/having.sql): Post-aggregation group filtering (`HAVING`).
-- [`aggregate-with-group.sql`](./05-Grouping/aggregate-with-group.sql): Multi-metric reporting pipelines.
-
-### 06. Joins ([`06-Joins/`](./06-Joins/))
-- [`inner-join.sql`](./06-Joins/inner-join.sql): Relational intersection matching keys across tables.
-- [`left-join.sql`](./06-Joins/left-join.sql): Left outer joins and anti-join patterns.
-- [`right-join.sql`](./06-Joins/right-join.sql): Right outer joins.
-- [`full-outer-join.sql`](./06-Joins/full-outer-join.sql): Full outer union and cross-engine emulation.
-- [`self-join.sql`](./06-Joins/self-join.sql): Hierarchical queries linking records within the same table.
-- [`cross-join.sql`](./06-Joins/cross-join.sql): Cartesian products for matrix generation.
-
-### 07. Subqueries ([`07-Subqueries/`](./07-Subqueries/))
-- [`single-row-subquery.sql`](./07-Subqueries/single-row-subquery.sql): Scalar subquery evaluation.
-- [`multi-row-subquery.sql`](./07-Subqueries/multi-row-subquery.sql): Set evaluation via `ANY`, `SOME`, and `ALL`.
-- [`correlated-subquery.sql`](./07-Subqueries/correlated-subquery.sql): Contextual inner evaluation referencing outer row.
-- [`subquery-with-in.sql`](./07-Subqueries/subquery-with-in.sql): Subquery set membership (`IN` / `NOT IN`).
-- [`subquery-with-exists.sql`](./07-Subqueries/subquery-with-exists.sql): Boolean existence testing (`EXISTS` / `NOT EXISTS`).
-
-### 08. Set Operations ([`08-Set-Operations/`](./08-Set-Operations/))
-- [`union.sql`](./08-Set-Operations/union.sql): Distinct set union.
-- [`union-all.sql`](./08-Set-Operations/union-all.sql): Unchecked set concatenation.
-- [`intersect.sql`](./08-Set-Operations/intersect.sql): Set intersection.
-- [`except.sql`](./08-Set-Operations/except.sql): Set difference (`EXCEPT` / `MINUS`).
-
-### 09. Views ([`09-Views/`](./09-Views/))
-- [`create-view.sql`](./09-Views/create-view.sql): Virtual table abstraction and column protection.
-- [`update-view.sql`](./09-Views/update-view.sql): View definition replacement and lifecycle.
-- [`drop-view.sql`](./09-Views/drop-view.sql): View removal without underlying data alteration.
-
-### 10. Indexes ([`10-Indexes/`](./10-Indexes/))
-- [`create-index.sql`](./10-Indexes/create-index.sql): B-Tree index creation for fast lookups.
-- [`unique-index.sql`](./10-Indexes/unique-index.sql): Unique index enforcement.
-- [`composite-index.sql`](./10-Indexes/composite-index.sql): Multi-column indexing and leftmost prefix rule.
-
-### 11. Transactions ([`11-Transactions/`](./11-Transactions/))
-- [`commit.sql`](./11-Transactions/commit.sql): Atomic transaction commits (`BEGIN` ... `COMMIT`).
-- [`rollback.sql`](./11-Transactions/rollback.sql): State reversion on failure (`ROLLBACK`).
-- [`savepoint.sql`](./11-Transactions/savepoint.sql): Checkpoints and partial rollbacks (`SAVEPOINT`).
-
-### 12. Database Design ([`12-Database-Design/`](./12-Database-Design/))
-- [`normalization.sql`](./12-Database-Design/normalization.sql): Relational normalization through 1NF, 2NF, and 3NF.
-- [`one-to-one.sql`](./12-Database-Design/one-to-one.sql): 1:1 relationship via shared or unique foreign key.
-- [`one-to-many.sql`](./12-Database-Design/one-to-many.sql): 1:N relationship with parent-child foreign keys.
-- [`many-to-many.sql`](./12-Database-Design/many-to-many.sql): M:N relationship using associative junction tables.
-
-### 13. Advanced SQL ([`13-Advanced-SQL/`](./13-Advanced-SQL/))
-- [`case.sql`](./13-Advanced-SQL/case.sql): Conditional expressions and pivot queries.
-- [`cte.sql`](./13-Advanced-SQL/cte.sql): Common Table Expressions (`WITH`).
-- [`recursive-cte.sql`](./13-Advanced-SQL/recursive-cte.sql): Recursive tree traversals and sequence generation.
-- [`window-functions.sql`](./13-Advanced-SQL/window-functions.sql): Analytical partitions via `OVER (PARTITION BY)`.
-- [`row-number.sql`](./13-Advanced-SQL/row-number.sql): Sequential row enumeration (`ROW_NUMBER()`).
-- [`rank.sql`](./13-Advanced-SQL/rank.sql): Non-contiguous rank assignment (`RANK()`).
-- [`dense-rank.sql`](./13-Advanced-SQL/dense-rank.sql): Contiguous rank assignment (`DENSE_RANK()`).
-- [`lead.sql`](./13-Advanced-SQL/lead.sql): Forward offset row inspection (`LEAD()`).
-- [`lag.sql`](./13-Advanced-SQL/lag.sql): Backward offset row inspection for delta calculations (`LAG()`).
-
-### 14. Interview Queries ([`14-Interview-Queries/`](./14-Interview-Queries/))
-- [`second-highest-salary.sql`](./14-Interview-Queries/second-highest-salary.sql): LeetCode #176 solutions.
-- [`nth-highest-salary.sql`](./14-Interview-Queries/nth-highest-salary.sql): LeetCode #177 dynamic ranking pattern.
-- [`duplicate-records.sql`](./14-Interview-Queries/duplicate-records.sql): Identifying duplicates via grouped counts.
-- [`remove-duplicates.sql`](./14-Interview-Queries/remove-duplicates.sql): LeetCode #196 deduplication with row retention.
-- [`employees-higher-than-average.sql`](./14-Interview-Queries/employees-higher-than-average.sql): Intra-group comparison via window partition.
-- [`department-highest-salary.sql`](./14-Interview-Queries/department-highest-salary.sql): LeetCode #184 top earner identification.
-- [`top-3-salaries.sql`](./14-Interview-Queries/top-3-salaries.sql): LeetCode #185 top-N ranking per department.
-- [`customers-without-orders.sql`](./14-Interview-Queries/customers-without-orders.sql): LeetCode #183 anti-join and existence tests.
-- [`consecutive-records.sql`](./14-Interview-Queries/consecutive-records.sql): LeetCode #180 consecutive sequence detection.
+```text
+create-database.sql
+create-table.sql
+insert-data.sql
+select.sql
+distinct.sql
+aliases.sql
+where.sql
+operators.sql
+order-by.sql
+limit.sql
+```
 
 ---
 
-## Production Schemas
+## 02. Constraints
 
-Module [`15-Real-World-Database/`](./15-Real-World-Database/) provides three complete relational schemas:
+Learn how to maintain data integrity using:
 
-### 1. Employee Management System ([`15-Real-World-Database/employee-management/`](./15-Real-World-Database/employee-management/))
-```
-[ departments ] 1 ──< N [ employees ] 1 ──< N [ payroll_history ]
-                           │        ^
-                           │ (manager_id)
-                           v        │
-                        M ──< [ employee_projects ] >── M [ projects ]
-```
-- [`schema.sql`](./15-Real-World-Database/employee-management/schema.sql): Schema with self-referencing foreign keys, constraints, and audit indices.
-- [`data.sql`](./15-Real-World-Database/employee-management/data.sql): Seed data across executive, engineering, marketing, and finance departments.
-- [`queries.sql`](./15-Real-World-Database/employee-management/queries.sql): Payroll variance, project capacity allocation, and salary ranking queries.
+* PRIMARY KEY
+* FOREIGN KEY
+* UNIQUE
+* NOT NULL
+* DEFAULT
+* CHECK
 
-### 2. E-Commerce Platform ([`15-Real-World-Database/ecommerce/`](./15-Real-World-Database/ecommerce/))
-```
-[ customers ] 1 ──< N [ orders ] 1 ──< N [ order_items ] >── 1 [ products ]
-                          │                                           │
-                          v                                           v
-                  1 [ payments ]                               1 [ inventory ]
-```
-- [`schema.sql`](./15-Real-World-Database/ecommerce/schema.sql): Relational order processing, inventory thresholds, and customer reviews.
-- [`data.sql`](./15-Real-World-Database/ecommerce/data.sql): Product catalog, stock tracking, and multi-state customer order records.
-- [`queries.sql`](./15-Real-World-Database/ecommerce/queries.sql): Realized revenue, product performance, CLV, and reorder alerts.
+Example:
 
-### 3. Content Publishing Platform ([`15-Real-World-Database/blog/`](./15-Real-World-Database/blog/))
+```sql
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    age INT CHECK (age >= 18),
+    status VARCHAR(20) DEFAULT 'ACTIVE'
+);
 ```
-[ users ] 1 ──< N [ posts ] 1 ──< N [ comments ] (recursive parent_comment_id)
-                     │
-                     v
-             M ──< [ post_tags ] >── M [ tags ]
-```
-- [`schema.sql`](./15-Real-World-Database/blog/schema.sql): Articles, category taxonomy, tag junctions, likes, and self-referencing comment trees.
-- [`data.sql`](./15-Real-World-Database/blog/data.sql): Seed articles, tag taxonomy, likes, and nested comment chains.
-- [`queries.sql`](./15-Real-World-Database/blog/queries.sql): Engagement analysis, tag aggregation, and recursive comment thread traversal.
 
 ---
 
-## Interview Challenge Mappings
+## 03. CRUD Operations
 
-| Problem | File | Pattern | Complexity |
-|---|---|---|---|
-| **Second Highest Salary** | [`second-highest-salary.sql`](./14-Interview-Queries/second-highest-salary.sql) | Subquery / `DENSE_RANK()` | Easy |
-| **Nth Highest Salary** | [`nth-highest-salary.sql`](./14-Interview-Queries/nth-highest-salary.sql) | `DENSE_RANK() = N` | Medium |
-| **Duplicate Records** | [`duplicate-records.sql`](./14-Interview-Queries/duplicate-records.sql) | `GROUP BY ... HAVING COUNT(*) > 1` | Easy |
-| **Delete Duplicates** | [`remove-duplicates.sql`](./14-Interview-Queries/remove-duplicates.sql) | Subquery with `MIN(id)` | Medium |
-| **Above Average Salary** | [`employees-higher-than-average.sql`](./14-Interview-Queries/employees-higher-than-average.sql) | `AVG() OVER (PARTITION BY)` | Medium |
-| **Department Top Salary** | [`department-highest-salary.sql`](./14-Interview-Queries/department-highest-salary.sql) | `DENSE_RANK() = 1` | Medium |
-| **Top 3 Department Salaries** | [`top-3-salaries.sql`](./14-Interview-Queries/top-3-salaries.sql) | `DENSE_RANK() <= 3` | Hard |
-| **Customers Without Orders** | [`customers-without-orders.sql`](./14-Interview-Queries/customers-without-orders.sql) | `LEFT JOIN ... IS NULL` / `NOT EXISTS` | Easy |
-| **Consecutive Numbers** | [`consecutive-records.sql`](./14-Interview-Queries/consecutive-records.sql) | `LAG()` and `LEAD()` | Medium |
+Core database operations:
+
+* CREATE
+* READ
+* UPDATE
+* DELETE
+
+```text
+INSERT → Add data
+SELECT → Read data
+UPDATE → Modify data
+DELETE → Remove data
+```
 
 ---
 
-## Quickstart Execution
+## 04. SQL Functions
 
-All scripts are idempotent: they drop existing demo tables, construct schemas, populate data, and execute target queries.
+### Aggregate Functions
 
-### PostgreSQL
+* COUNT()
+* SUM()
+* AVG()
+* MIN()
+* MAX()
+
+### String Functions
+
+* UPPER()
+* LOWER()
+* TRIM()
+* LENGTH()
+* SUBSTRING()
+* REPLACE()
+* CONCAT()
+
+### Numeric Functions
+
+* ROUND()
+* CEIL()
+* FLOOR()
+* ABS()
+* MOD()
+
+### Date Functions
+
+* Current Date
+* Current Timestamp
+* Date Extraction
+* Date Difference
+* Date Formatting
+
+### NULL Handling
+
+* COALESCE()
+* NULLIF()
+
+---
+
+## 05. GROUP BY & HAVING
+
+Topics:
+
+* GROUP BY
+* HAVING
+* Aggregate Functions with GROUP BY
+* Multiple-column grouping
+
+Example:
+
+```sql
+SELECT department_id, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department_id;
+```
+
+### Interview Concept
+
+Understand the difference between:
+
+```text
+WHERE
+vs
+HAVING
+```
+
+---
+
+# 06. SQL Joins ⭐
+
+One of the most important SQL topics for backend development.
+
+### Topics
+
+* INNER JOIN
+* LEFT JOIN
+* RIGHT JOIN
+* FULL OUTER JOIN
+* SELF JOIN
+* CROSS JOIN
+
+Example:
+
+```sql
+SELECT
+    e.name,
+    d.department_name
+FROM employees e
+INNER JOIN departments d
+    ON e.department_id = d.id;
+```
+
+### Important Questions
+
+* INNER JOIN vs LEFT JOIN
+* LEFT JOIN vs RIGHT JOIN
+* When should you use a SELF JOIN?
+* What is a CROSS JOIN?
+* How can you find unmatched records?
+
+---
+
+# 07. Subqueries
+
+Topics:
+
+* Single-row subqueries
+* Multi-row subqueries
+* Correlated subqueries
+* IN
+* EXISTS
+* NOT EXISTS
+* ANY
+* ALL
+
+Example:
+
+```sql
+SELECT *
+FROM employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+);
+```
+
+---
+
+# 08. Set Operations
+
+Practice:
+
+* UNION
+* UNION ALL
+* INTERSECT
+* EXCEPT
+
+Understand the difference between:
+
+```text
+UNION
+vs
+UNION ALL
+```
+
+---
+
+# 09. Views
+
+Topics:
+
+* CREATE VIEW
+* Querying Views
+* Updating Views
+* DROP VIEW
+
+Example:
+
+```sql
+CREATE VIEW employee_details AS
+SELECT
+    e.name,
+    d.department_name
+FROM employees e
+JOIN departments d
+    ON e.department_id = d.id;
+```
+
+---
+
+# 10. Indexes
+
+Learn the basics of database indexing and query performance.
+
+### Topics
+
+* What is an Index?
+* CREATE INDEX
+* UNIQUE INDEX
+* Composite Index
+* Index usage
+* Index trade-offs
+
+Example:
+
+```sql
+CREATE INDEX idx_employee_email
+ON employees(email);
+```
+
+### Important Concept
+
+Indexes can improve read performance, but they also have storage and write-maintenance costs.
+
+---
+
+# 11. Transactions
+
+Topics:
+
+* Transactions
+* COMMIT
+* ROLLBACK
+* SAVEPOINT
+* ACID fundamentals
+
+Example:
+
+```sql
+START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 1000
+WHERE id = 1;
+
+UPDATE accounts
+SET balance = balance + 1000
+WHERE id = 2;
+
+COMMIT;
+```
+
+---
+
+# 12. Database Design
+
+Learn how relational databases are structured.
+
+### Topics
+
+* Normalization
+* 1NF
+* 2NF
+* 3NF
+* One-to-One
+* One-to-Many
+* Many-to-Many
+* Foreign Keys
+* Junction Tables
+
+Example:
+
+```text
+User
+ │
+ └──< Orders
+        │
+        └──< Order Items
+                │
+                └── Product
+```
+
+---
+
+# 13. Advanced SQL
+
+Topics:
+
+### CASE
+
+```sql
+SELECT
+    name,
+    salary,
+    CASE
+        WHEN salary >= 80000 THEN 'HIGH'
+        WHEN salary >= 50000 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END AS salary_category
+FROM employees;
+```
+
+### CTE
+
+```sql
+WITH high_salary AS (
+    SELECT *
+    FROM employees
+    WHERE salary > 70000
+)
+SELECT *
+FROM high_salary;
+```
+
+### Window Functions
+
+* ROW_NUMBER()
+* RANK()
+* DENSE_RANK()
+* LEAD()
+* LAG()
+
+Example:
+
+```sql
+SELECT
+    name,
+    salary,
+    RANK() OVER (
+        ORDER BY salary DESC
+    ) AS salary_rank
+FROM employees;
+```
+
+---
+
+# 14. SQL Interview Queries ⭐
+
+A dedicated collection of common SQL interview problems.
+
+### Salary Problems
+
+* Second Highest Salary
+* Third Highest Salary
+* Nth Highest Salary
+* Highest Salary by Department
+* Top 3 Salaries by Department
+* Employees Earning Above Average Salary
+
+### Duplicate Problems
+
+* Find Duplicate Records
+* Count Duplicate Records
+* Remove Duplicate Records
+
+### Employee Problems
+
+* Employees Without Department
+* Departments Without Employees
+* Employees With Same Salary
+* Employees Joined in a Particular Year
+
+### Customer & Order Problems
+
+* Customers Without Orders
+* Customers With More Than N Orders
+* Highest Order Amount
+* Total Sales Per Customer
+* Monthly Sales
+
+### Advanced Problems
+
+* Consecutive Records
+* Top N Records Per Group
+* Running Total
+* Ranking Records
+* Compare Current Row With Previous Row
+
+---
+
+# 15. Real-World Database Projects ⭐⭐⭐⭐⭐
+
+This section contains complete relational database scenarios.
+
+## 🏢 Employee Management System
+
+### Tables
+
+```text
+departments
+employees
+projects
+employee_projects
+payroll_history
+```
+
+### Practice
+
+* Employee salary analysis
+* Department-wise salary
+* Employee hierarchy
+* Project allocation
+* Payroll analysis
+* Top earners
+
+---
+
+## 🛒 E-Commerce Database
+
+### Tables
+
+```text
+users
+products
+categories
+cart
+cart_items
+orders
+order_items
+payments
+inventory
+```
+
+### Practice
+
+* Products by category
+* Customer orders
+* Total revenue
+* Best-selling products
+* Monthly sales
+* Inventory analysis
+* Customers without orders
+* Order history
+
+---
+
+## 📝 Blog Database
+
+### Tables
+
+```text
+users
+posts
+categories
+comments
+tags
+post_tags
+likes
+```
+
+### Practice
+
+* Posts by user
+* Posts by category
+* Most commented posts
+* Most liked posts
+* Tag-based search
+* User engagement
+* Comment hierarchy
+
+This database structure is also useful for understanding the SQL side of a future **Spring Boot Blog Application**.
+
+---
+
+# 💼 Backend Development Connection
+
+SQL is an important part of Java backend development.
+
+This repository focuses on concepts used later with:
+
+```text
+Java
+   ↓
+Spring Boot
+   ↓
+JPA / Hibernate
+   ↓
+SQL
+   ↓
+MySQL
+```
+
+The SQL knowledge developed here will be useful when working with:
+
+* Spring Data JPA
+* Hibernate
+* Entity Relationships
+* JPQL
+* Native Queries
+* REST APIs
+* Transaction Management
+* Database-driven applications
+
+---
+
+# 🧠 Interview Preparation
+
+Important concepts to revise:
+
+### SQL Fundamentals
+
+* Primary Key vs Unique Key
+* DELETE vs TRUNCATE vs DROP
+* WHERE vs HAVING
+* GROUP BY
+* NULL handling
+
+### Joins
+
+* INNER JOIN
+* LEFT JOIN
+* RIGHT JOIN
+* SELF JOIN
+
+### Database Design
+
+* Normalization
+* 1NF / 2NF / 3NF
+* Relationships
+* Foreign Keys
+* Junction Tables
+
+### Performance
+
+* Indexes
+* Composite Indexes
+* Query optimization basics
+
+### Transactions
+
+* ACID
+* COMMIT
+* ROLLBACK
+* SAVEPOINT
+
+### Advanced SQL
+
+* CTE
+* Window Functions
+* RANK
+* DENSE_RANK
+* ROW_NUMBER
+* LEAD
+* LAG
+
+---
+
+# 🚀 Quick Start
+
+## 1. Install MySQL
+
+Install **MySQL 8+** on your system.
+
+## 2. Clone Repository
+
 ```bash
-psql -U postgres -d testdb -f 06-Joins/inner-join.sql
+git clone https://github.com/YOUR_USERNAME/sql-practice.git
 ```
 
-### MySQL
+## 3. Open MySQL
+
 ```bash
-mysql -u root -p testdb < 13-Advanced-SQL/window-functions.sql
+mysql -u root -p
 ```
 
-### SQLite
-```bash
-sqlite3 :memory: < 14-Interview-Queries/second-highest-salary.sql
+## 4. Select a Practice File
+
+For example:
+
+```text
+06-Joins/inner-join.sql
 ```
+
+## 5. Execute
+
+```bash
+mysql -u root -p < 06-Joins/inner-join.sql
+```
+
+Or open the SQL file in:
+
+* MySQL Workbench
+* IntelliJ IDEA
+* VS Code
+* DBeaver
 
 ---
 
-## Git Remote Configuration
+# 📊 Learning Progress
 
-To link this repository to your GitHub account:
-
-```bash
-git remote add origin https://github.com/<YOUR_USERNAME>/sql-practice.git
-git branch -M main
-git push -u origin main
-```
+* [ ] SQL Basics
+* [ ] Constraints
+* [ ] CRUD
+* [ ] Functions
+* [ ] GROUP BY & HAVING
+* [ ] Joins
+* [ ] Subqueries
+* [ ] Set Operations
+* [ ] Views
+* [ ] Indexes
+* [ ] Transactions
+* [ ] Database Design
+* [ ] Advanced SQL
+* [ ] Interview Queries
+* [ ] Real-World Databases
 
 ---
 
-## License
+# 📈 Practice Philosophy
 
-This repository is distributed under the [MIT License](LICENSE).
-#   s q l - p r a c t i c e  
- 
+I follow a simple learning process:
+
+```text
+Learn
+  ↓
+Write Query
+  ↓
+Execute
+  ↓
+Understand Result
+  ↓
+Modify Query
+  ↓
+Solve Similar Problem
+  ↓
+Apply to Real-World Database
+```
+
+The focus is on **understanding why a query works**, not just memorizing syntax.
+
+---
+
+# 🔗 Related Projects
+
+This SQL practice repository supports my Java Full Stack development journey.
+
+### Java
+
+* `java-core-practice`
+* `java-dsa`
+
+### Backend
+
+* `spring-boot-rest-api`
+* `spring-security-jwt`
+
+### Full Stack
+
+* `blog-application`
+* `e-commerce-application`
+
+---
+
+# 👨‍💻 Author
+
+**Sujay Bonde**
+
+Java Full Stack Developer
+Java • Spring Boot • React • MySQL
+
+<p align="center">
+  <a href="https://sujaybonde.vercel.app">
+    <img src="https://img.shields.io/badge/Portfolio-Visit%20Portfolio-blue?style=for-the-badge" alt="Portfolio">
+  </a>
+  <a href="https://www.linkedin.com/">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+  </a>
+</p>
+
+---
+
+## ⭐ If this repository helps you
+
+Feel free to explore, practice, and improve the queries.
+
+**Keep learning. Keep building. Keep solving.**
+
+---
