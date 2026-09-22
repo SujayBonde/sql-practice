@@ -1,4 +1,3 @@
-````markdown
 # 🗄️ SQL Practice
 
 <p align="center">
@@ -79,7 +78,6 @@ The repository is divided into progressive modules:
 14-Interview-Queries
       ↓
 15-Real-World-Database
-````
 
 ---
 
@@ -827,7 +825,7 @@ Java • Spring Boot • React • MySQL
   <a href="https://sujaybonde.vercel.app">
     <img src="https://img.shields.io/badge/Portfolio-Visit%20Portfolio-blue?style=for-the-badge" alt="Portfolio">
   </a>
-  <a href="https://www.linkedin.com/">
+  <a href="linkedin.com/in/sujay-bonde">
     <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
   </a>
 </p>
